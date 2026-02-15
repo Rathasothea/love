@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Love Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-body">
+
+  <div class="login-box">
+    <h1>❤️ Welcome My Love</h1>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+  </div>
+
+  <script>
+    function login() {
+      const pass = document.getElementById("password").value;
+      if(pass === "260719" || pass === "26072019") {
+        window.location.href = "home.html";
+      } else {
+        alert("Wrong password ❤️");
+      }
+    }
+  </script>
+</body>
+</html>

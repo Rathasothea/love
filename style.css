@@ -1,0 +1,76 @@
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+
+/* LOGIN PAGE */
+.login-body{height:100vh;background:linear-gradient(135deg,#ff4d6d,#ffb3c6);display:flex;justify-content:center;align-items:center}
+.login-box{background:rgba(255,255,255,0.2);padding:40px;border-radius:16px;backdrop-filter:blur(10px);text-align:center;width:300px}
+.login-box h1{margin-bottom:20px;color:white}
+.login-box input{width:100%;padding:10px;margin:10px 0;border-radius:8px;border:none}
+.login-box button{width:100%;padding:12px;border:none;border-radius:8px;background:#ff4d6d;color:white;font-size:16px;cursor:pointer}
+
+/* VIDEO PAGE */
+.video-body{height:100vh;width:100vw;position:relative;overflow:hidden;background:#000}
+
+/* BEAUTIFUL BACKGROUND */
+.overlay{
+  position:fixed;
+  inset:0;
+  background: linear-gradient(120deg, rgba(255,77,109,0.25), rgba(255,179,198,0.25));
+  backdrop-filter: blur(12px);
+  z-index:1;
+}
+
+/* VIDEO FULLSCREEN */
+video{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:100vw;
+  height:100vh;
+  object-fit:contain;
+  z-index:2;
+  opacity:1;
+  transition:opacity 1s;
+  border-radius:12px;
+  box-shadow:0 0 50px rgba(255,77,109,0.5);
+}
+
+/* HEARTS */
+#hearts{position:fixed;inset:0;pointer-events:none;z-index:3}
+.heart{position:absolute;bottom:-20px;font-size:24px;animation:floatUp linear forwards}
+@keyframes floatUp{from{transform:translateY(0);opacity:1}to{transform:translateY(-110vh);opacity:0}}
+
+/* NEXT BUTTON */
+#nextBtn{
+  position:fixed;bottom:50px;left:50%;
+  transform:translateX(-50%);
+  padding:14px 32px;font-size:18px;
+  border:none;border-radius:30px;
+  background:#ff4d6d;color:white;
+  cursor:pointer;display:none;z-index:10;
+  box-shadow:0 5px 20px rgba(0,0,0,0.3);
+  transition:transform 0.3s, background 0.3s;
+}
+#nextBtn:hover{transform:translateX(-50%) scale(1.1); background:#ff1a4d}
+
+/* FINAL TEXT */
+#finalText{
+  position:fixed;inset:0;
+  display:none;justify-content:center;align-items:center;
+  font-size:60px;color:white;font-weight:bold;
+  z-index:20;
+  text-shadow:0 0 10px #ff4d6d, 0 0 20px #ffb3c6, 0 0 30px #ff4d6d;
+}
+#typingText{border-right:3px solid white;padding-right:5px;animation:blink 1s infinite}
+@keyframes blink{0%,50%,100%{border-color:white}25%,75%{border-color:transparent}}
+
+/* TAP TO UNMUTE HINT */
+#tapSound{
+  position:fixed;top:20px;left:50%;
+  transform:translateX(-50%);
+  color:white;font-size:14px;
+  background:rgba(0,0,0,0.5);
+  padding:8px 16px;border-radius:20px;
+  z-index:30;
+}

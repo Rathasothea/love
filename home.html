@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>For My Love ❤️</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="video-body">
+
+  <!-- Background overlay -->
+  <div class="overlay"></div>
+
+  <!-- Floating hearts -->
+  <div id="hearts"></div>
+
+  <!-- Tap to enable sound -->
+  <div id="tapSound">Tap anywhere to enable sound 🔊</div>
+
+  <!-- Video -->
+  <video id="loveVideo" autoplay muted playsinline></video>
+
+  <!-- Next Button -->
+  <button id="nextBtn">Next ❤️</button>
+
+  <!-- Final Text -->
+  <div id="finalText"><span id="typingText"></span></div>
+
+  <!-- Background music -->
+  <audio id="bgMusic" src="music.mp3" loop></audio>
+
+  <script>
+    const video = document.getElementById("loveVideo");
+    const nextBtn = document.getElementById("nextBtn");
+    const finalText = document.getElementById("finalText");
+    const typingText = document.getElementById("typingText");
+    const tapSound = document.getElementById("tapSound");
+    const bgMusic = document.getElementById("bgMusic");
+
+    let step = 1;
+    let message = "❤️ Nis jea video del nh tver derm3 neak jea lerk jong kroy 😔. Hope tha nk ng penh jit hx k ban read peak del k’nh jg yy. K’nh ot mean ey yy jrern te krav pi peak tha ❤️b sl o ❤️ng rkun krob yang rg konlong mk💔. Pel nis dl pel del yg os ni sai ng knea hx hx k trv der plov reang klun 😔nh k min team tear a’vey pi neak tt del ,kron tea Rkun Hx nh k dg komhus krob yang💔 hx me ttul skol tha me nk khos🙏. Me pit jea jg trv knea vinh nah tea tver mx ber u somraj jit bb nis tv hx😔😔😔hope tha u ng meet mnus del lr jeang me❤️ Rkun krob yang . I’m really really sorry 🙏💔😔. I really missing you😔💔that all and thank you🙏💔";
+    let typeIndex = 0;
+
+    // Floating emojis for final screen
+    const finalEmojis = ["😔","💔"];
+
+    // Start video 1
+    video.src = "love.mp4";
+    video.play();
+
+    // Enable sound/music after first user click
+    document.body.addEventListener("click", () => {
+      video.muted = false;
+      bgMusic.play();
+      tapSound.style.display = "none";
+    }, { once: true });
+
+    // When video ends → show Next button (both videos)
+    video.addEventListener("ended", () => {
+      nextBtn.style.display = "block";
+    });
+
+    // Next button click logic
+    nextBtn.onclick = () => {
+      nextBtn.style.display = "none";
+
+      if(step === 1){
+        // Move to video 2
+        step = 2;
+        fadeOutVideo(() => {
+          video.src = "love1.mp4";
+          video.play();
+          fadeInVideo();
+        });
+      } else if(step === 2){
+        // Video 2 finished → show final text
+        fadeOutVideo(() => {
+          video.style.display = "none";
+          showTypingText();
+        });
+      }
+    };
+
+    // Hearts effect (floating ❤️, 💖, 💘, 💕)
+    setInterval(() => {
+      const heart = document.createElement("span");
+      heart.className = "heart";
+      heart.innerHTML = ["❤️","💖","💘","💕"][Math.floor(Math.random()*4)];
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 2 + Math.random() * 3 + "s";
+      document.getElementById("hearts").appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }, 300);
+
+    // Floating final emojis (😔 💔)
+    function floatingFinalEmojis(){
+      setInterval(()=>{
+        const em = document.createElement("span");
+        em.className = "heart";
+        em.style.fontSize = 28 + Math.random()*20 + "px";
+        em.style.left = Math.random()*100 + "vw";
+        em.style.animationDuration = 2 + Math.random()*3 + "s";
+        em.innerHTML = finalEmojis[Math.floor(Math.random()*finalEmojis.length)];
+        document.getElementById("hearts").appendChild(em);
+        setTimeout(()=>em.remove(),5000);
+      }, 500);
+    }
+
+    // Fade out video
+    function fadeOutVideo(callback){
+      video.style.transition = "opacity 1s";
+      video.style.opacity = 0;
+      setTimeout(callback, 1000);
+    }
+
+    // Fade in video
+    function fadeInVideo(){
+      video.style.transition = "opacity 1s";
+      video.style.opacity = 1;
+    }
+
+    // Typing animation for "I Love You"
+    function showTypingText(){
+      finalText.style.display = "flex";
+      floatingFinalEmojis();
+      function type(){
+        if(typeIndex < message.length){
+          typingText.innerHTML += message[typeIndex];
+          typeIndex++;
+          setTimeout(type, 150);
+        }
+      }
+      type();
+    }
+
+  </script>
+
+</body>
+</html>
