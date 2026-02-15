@@ -68,25 +68,28 @@ video{
 /* TAP TO UNMUTE HINT */
 #tapSound {
   position: fixed;
-  inset: 0;                     /* full screen */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 12088px;             /* extremely large */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 60px;          /* much bigger */
   font-weight: 900;
-  text-align: center;
   color: white;
-  background: radial-gradient(circle, #ff004c 0%, #99002e 100%);
-  z-index: 500;
-  animation: megaPulse 1.2s infinite;
-  cursor: pointer;
+  text-align: center;
+  background: linear-gradient(45deg, #ff004c, #ff4d6d);
+  padding: 40px 80px;
+  border-radius: 100px;
+  box-shadow: 
+    0 0 40px rgba(255,0,80,1),
+    0 0 80px rgba(255,0,80,0.8),
+    0 0 120px rgba(255,0,80,0.6);
+  z-index: 200;
+  animation: megaPulse 1.5s infinite;
 }
 
-/* dramatic pulse animation */
+/* dramatic pulse */
 @keyframes megaPulse {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.1); }
-  100% { transform: scale(1); }
+  0%   { transform: translate(-50%, -50%) scale(1); }
+  50%  { transform: translate(-50%, -50%) scale(1.2); }
+  100% { transform: translate(-50%, -50%) scale(1); }
 }
-
 
