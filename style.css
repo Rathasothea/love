@@ -66,11 +66,27 @@ video{
 @keyframes blink{0%,50%,100%{border-color:white}25%,75%{border-color:transparent}}
 
 /* TAP TO UNMUTE HINT */
-#tapSound{
-  position:fixed;top:20px;left:50%;
-  transform:translateX(-50%);
-  color:white;font-size:14px;
-  background:rgba(0,0,0,0.5);
-  padding:8px 16px;border-radius:20px;
-  z-index:30;
+#tapSound {
+  position: fixed;
+  inset: 0;                     /* full screen */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12088px;             /* extremely large */
+  font-weight: 900;
+  text-align: center;
+  color: white;
+  background: radial-gradient(circle, #ff004c 0%, #99002e 100%);
+  z-index: 500;
+  animation: megaPulse 1.2s infinite;
+  cursor: pointer;
 }
+
+/* dramatic pulse animation */
+@keyframes megaPulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+
